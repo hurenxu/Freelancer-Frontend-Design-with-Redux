@@ -1,22 +1,62 @@
 <!DOCTYPE html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Title</title><!-- change this afterward -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- change this afterward -->
-		<meta name="description" content="Description" />
-		<meta name="author" content="Renxu Hu, Zhizhen Qin, Litao Qiao" />
-		<link rel="icon" type="image/jpeg" href="img/logo.png">
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body>
-		<div id="navbar" class="top-nav">
-			<img class="resize" src="img/logo.png"></img>
-			<a href="#">Sign in&nbsp</a>
-			<span>or</span>
-			<a href="#">Sign up</a>
-			<input type="text" placeholder="Search...">
-		</div>
-	</body>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Title</title><!-- change this afterward -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- change this afterward -->
+    <meta name="description" content="Description" />
+    <meta name="author" content="Renxu Hu, Zhizhen Qin, Litao Qiao" />
+    <link rel="icon" type="image/jpeg" href="img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="index_body">
+
+<div class="top_bar">
+    <ul id="nav">
+        <li><a class="inline_button" href="#">Item1</a></li>
+        <li><a class="inline_button" href="#">Item2</a></li>
+        <li><a class="inline_button" href="#">Item3</a></li>
+        <li><a class="inline_button" href="#">Item4</a></li>
+    </ul>
+
+    <input type="text" placeholder="Search..." class="search"/>
+
+    <ul id="sign">
+        <li><a class="inline_button" href="#">Sign In</a></li>
+        <li><a class="inline_button" href="#">Sign On</a></li>
+    </ul>
+</div>
+
+<div class="index_main">
+    <div class="index_form">
+        <form class="input_form">
+            <div class="input_box">
+                <input type="text" class="input_text" required /><br />
+                <span class="label">Username</span>
+            </div>
+            <div class="input_box">
+                <input type="text" class="input_text" required /><br />
+                <span class="label">Email</span>
+            </div>
+            <div class="input_box">
+                <input type="password" class="input_text" required /><br />
+                <span class="label">Password</span>
+            </div>
+        </form>
+        <a class="button" href="#">Sign Up</a>
+    </div>
+    <!--
+    <div class="index_intro">
+        <header>Build For Developers</header>
+        <p>GitHub is a development platform inspired by the way you work.
+            From open source to business, you can host and review code, manage projects,
+            and build software alongside millions of other developers. </p>
+    </div>
+    -->
+</div>
+</body>
 </html>
