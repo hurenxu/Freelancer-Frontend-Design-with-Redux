@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Home</title><!-- change this afterward -->
+		<title>DeveloperSearchJobPage</title><!-- change this afterward -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- change this afterward -->
 		<meta name="description" content="Description" />
@@ -25,29 +25,60 @@
 				</div>
 			</div>
 		</div>
-		<div id="inside_body" class="body_setting">
-			<div class="header">
-				<p>Built for Companies<br>and Developers
-				<span>LOGO is a platform...</span></p>
+		<div id="inside_body_dev" class="body_setting_dev">
+			<div class="header_dev">
+				<p>Search</p>
+				<input type="text" placeholder="|">
 			</div>
-			<div class="box">
+			<div class="box_left">
 				<form action="#" method="post">
-				<p>Username</p>
-				<input type="text" placeholder="username">
-				<p>Password</p>
-				<input type="password" placeholder="password">
-				<span>Use at least one letter, one numberal, and one seven 
-				characters.</span>
-				<p>Email</p>
-				<input type="text" placeholder="email"><br>
-				<p>Company or Developer</p>
-				<select name="text">
-					<option value="Company" selected>Company</option>
-					<option value="Developer">Developer</option>
-				</select>
-				<button type="submit">Sign Up for LOGO</button><br>
-				<span>By clicking the sign up button, you agree to terms.</span>
+					<p><b>Filters</b></p>
+					<hr>
+					
+					<span>Skills</span><br>
+					<button class="button1">C</button>
+					<button class="button1">JAVA</button>
+					<button class="button3">+</button>
+					<br><br><hr>
+					
+					<span>Price Range</span>
+					<div class="slidecontainer">
+						<input type="range" min="10" max="3000" value="1000" 
+						class="slider" name="ageInputName" id="ageInputId" 
+						oninput="ageOutputId.value = ageInputId.value">
+						<span>Above&nbsp;$</span><output name="ageOutputName" id="ageOutputId">1000</output>
+					</div>
+					<br><hr>
+					
+					<span>Estimated Time</span>
+					<div class="slidecontainer">
+						<input type="range" min="1" max="50" value="20" 
+						class="slider" name="inputName" id="inputId" 
+						oninput="outputId.value = inputId.value">
+						<span>Above&nbsp;</span><output name="outputName" id="outputId">20</output><span>hrs</span>
+					</div>
+					<br><hr>
+					
+					<span>Category</span><br>
+					<button class="button2">Web</button><br>
+					<button class="button2">iOS</button><br>
+					<button class="button3">+</button><br>
 				</form>
+			</div>
+			<div class="box_top">
+				<select name="text">
+					<option value="pricehigh" selected>Price: High to Low</option>
+					<option value="pricelow">Price: Low to High</option>
+					<option value="timehigh">Time: High to Low</option>
+					<option value="timelow">Time: Low to High</option>
+				</select>
+				<span>Sort by:&nbsp;</span>
+			</div>
+			<div class="box_bottom">
+			</div>
+			<div class="box_bottom">
+			</div>
+			<div class="box_bottom">
 			</div>
 		</div>
 		<div id="endbar" class="below_nav-dev">
