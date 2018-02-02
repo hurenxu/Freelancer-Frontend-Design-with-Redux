@@ -724,3 +724,48 @@ img.resize {
 	margin-top: 8px;
 	margin-left: 50px;
 }
+
+.body_setting_dev .box_bottom img{
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	display: inline;
+}
+
+.body_setting_dev .box_bottom p{
+	float: left;
+	padding-left: 30px;
+	margin-top: 10px;
+	display: inline;
+	margin-left: 15px;
+	margin-top: 10px;
+	font-family: Arial, Helvetica, serif;
+	font-size: 30px;
+}
+
+.body_setting_dev .box_bottom span{
+	float: left;
+	margin-top: 10px;
+	display: inline;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: 19px;
+	color: gray;
+}
+
+.body_setting_dev .box_bottom button{
+	float: right;
+	font-family: Arial, Helvetica, serif;
+    border: none;
+    color: black;
+	background-color: #db5120;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+	border-radius: 18px;
+	height: 40px;
+	width: 90px;
+	margin-right: 30px;
+	margin-top: 10px;
+}
