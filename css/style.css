@@ -83,15 +83,14 @@ img.resize {
 	height: 80px; 
 }
 
-.below_nav span {
-	float: center;
+.below_nav span{
 	display: block;
 	color: white;
 	text-align: center;
 	padding: 14px 0px;
 	text-decoration: none;
 	font-size: 22px;
-	font-family: Times New Roman, sans-serif;
+	font-family: "Times New Roman", sans-serif;
 }
 
 #inside_body { 
