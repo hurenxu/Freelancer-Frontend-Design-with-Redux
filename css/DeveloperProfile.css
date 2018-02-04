@@ -269,7 +269,7 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 }
 
 .innerwrap {
-    width: 1200px;
+    width: 80vw;
     margin: 0 auto;
 }
 
@@ -343,7 +343,8 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 #hightlight-tab {
     border-bottom: 2px solid #6aafea;
     border-radius: 0 0 2px 2px;
-    color:  #6aafea;
+    color: #ea002c;
+    background-color: #b9bce2
 }
 
 .row2tab li i {
@@ -488,4 +489,32 @@ dd {
     float: left;
     width: 50%;
     margin-top: 20px;
+}
+
+@media (max-width:1010px) {
+    .row2tab li{
+        width: 100%;
+    }
+    .section1 .col2.first {
+        width: 70%;
+    }
+    .section1 .col2.last {
+        width: 30%;
+    }
+    .section1 .col2.last .col3 span {
+        text-align: left;
+        margin-right: 100px;
+    }
+    .section1 .col2.last .col3 h1 {
+        test-align: left;
+        margin-right: 100px;
+    }
+}
+
+@media (max-width: 1240px) {
+    dl dt{
+        width: 100%;
+        text-align: left;
+        padding: 0;
+    }
 }
