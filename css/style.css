@@ -903,13 +903,13 @@ input:focus, textarea:focus, keygen:focus, select:focus {
 	color: #555;
 	border-bottom: 2px solid #f1f1f1;
 }
-.row2tab li:first-child {
-	border-bottom: 2px solid #6AAFEA;
+
+#hightlight-tab {
+	border-bottom: 2px solid #6aafea;
 	border-radius: 0 0 2px 2px;
+	color:  #6aafea;
 }
-.row2tab li:first-child {
-	color:  #6AAFEA;
-}
+
 .row2tab li i {
 	margin-right: 3px;
 	font-size: 14px;
@@ -957,6 +957,18 @@ section.section2 {
     float: left;
 }
 
+.section2 .resume {
+	width: 100%;
+}
+
+
+.section2 .resume img {
+	margin: 0 5%;
+	align: center;
+	width: 90%;
+
+}
+
 .section2 .profileinfo {
 	text-align: center;
 	padding: 0 10px 30px;
@@ -993,6 +1005,17 @@ section.section2 {
 	height: 30px;
 	width: 160px;
 	margin-right: 30px;
+}
+
+.section2 .resume-buttons button{
+	float: right;
+	color: black;
+	text-align: center;
+	font-size: 15px;
+	border-radius: 5px;
+	height: 30px;
+	width: 80px;
+	margin: 30px;
 }
 .progressbutton{
 	background-color: #62abff;
@@ -1074,3 +1097,26 @@ section.section2 {
 
 }
 */
+
+.detaillist {
+	padding: 40px 200px;
+}
+
+dl {
+	width: 100%;
+	overflow: hidden;
+    margin: 30px 0;
+}
+dt {
+	font-weight: 700;
+	float: left;
+    text-align: right;
+	width: 50%;
+    margin-top: 20px;
+    padding-right: 100px;
+}
+dd {
+	float: left;
+	width: 50%;
+	margin-top: 20px;
+}
