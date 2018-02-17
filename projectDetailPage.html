@@ -1,88 +1,116 @@
-<!DOCTYPE html>
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Title</title><!-- change this afterward -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- change this afterward -->
-    <meta name="description" content="Description" />
-    <meta name="author" content="Renxu Hu, Zhizhen Qin, Litao Qiao" />
-    <link rel="icon" type="image/jpeg" href="img/logo.png">
-    <link rel="stylesheet" href="css/project_detail_page.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/logo.png">
+
+    <title>Main Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/projectDetailPage.css">
 </head>
 
 <body>
 
-<div class="top_bar">
-    <ul class="nav">
-        <li><a class="inline_button" href="#">Item1</a></li>
-        <li><a class="inline_button" href="#">Item2</a></li>
-        <li><a class="inline_button" href="#">Item3</a></li>
-        <li><a class="inline_button" href="#">Item4</a></li>
-    </ul>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Developed-In</a>
 
-    <input type="text" placeholder="Search..." class="search"/>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <ul class="sign">
-        <li><a class="inline_button" href="#">Sign In</a></li>
-        <li><a class="inline_button" href="#">Sign On</a></li>
-    </ul>
-</div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-4" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-info mx-1 float-right" type="submit">
+                        <i class="fas fa-user"></i> Joeyonng
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
 
-<div class="detail">
-    <img class="image" alt="App screen shot" src="img/app_detail.png">
+<div class="container">
+    <div class="jumbotron">
+        <img class="image my-4" style="max-width: 100%;" alt="App screen shot" src="img/app_detail.png">
 
-    <div id="header">
-        <div id="header-title">
-            <h1>Application Title</h1>
-            <h3>Application Subtitle1</h3>
-            <h3>Application subtitle2</h3>
+        <div class="row">
+            <div class="col col-sm-10">
+                <h1>Application Title</h1>
+                <h3>Application Subtitle1</h3>
+                <h3>Application subtitle2</h3>
+            </div>
+            <div class="col col-sm-1 d-flex align-items-center">
+                <button class="btn btn-info mx-2" type="submit">Chat</button>
+                <button class="btn btn-info mx-2" type="submit">Apply</button>
+            </div>
         </div>
 
-        <a class="button" id="button">Apply</a>
-    </div>
-
-    <div id="description">
-        <p class="paragraph">
-            Google's software engineers develop the next-generation
-            technologies that change how billions of users connect, explore,
-            and interact with information and one another.
-            Our products need to handle information at massive scale,
-            and extend well beyond web search.
-            We're looking for engineers who bring fresh ideas from all areas,
-            including information retrieval, distributed computing,
-            large-scale system design, networking and data storage, security,
-            artificial intelligence, natural language processing,
-            UI design and mobile; the list goes on and is growing every day.
-            As a software engineer, you will work on a specific project
-            critical to Google’s needs with opportunities to switch teams
-            and projects as you and our fast-paced business grow and evolve.
-            We need our engineers to be versatile,
-            display leadership qualities and be enthusiastic to take on
-            new problems across the full-stack as we continue to push
-            technology forward.
-        </p>
-        <p class="paragraph">
-            Google aspires to be an organization that reflects the globally
-            diverse audience that our products and technology serve.
-            We believe that in addition to hiring the best talent,
-            a diversity of perspectives, ideas and cultures leads to the
-            creation of better products and services.
-        </p>
-        <p class="paragraph">
-            Google is and always will be an engineering company.
-            We hire people with a broad set of technical skills who are
-            ready to take on some of technology's greatest challenges
-            and make an impact on millions, if not billions, of users.
-            At Google, engineers not only revolutionize search,
-            they routinely work on massive scalability and storage solutions,
-            large-scale applications and entirely new platforms for developers
-            around the world. From AdWords to Chrome, Android to YouTube,
-            Social to Local, Google engineers are changing the world one
-            technological achievement after another.
-        </p>
+        <div>
+            <p class="paragraph">
+                Google's software engineers develop the next-generation
+                technologies that change how billions of users connect, explore,
+                and interact with information and one another.
+                Our products need to handle information at massive scale,
+                and extend well beyond web search.
+                We're looking for engineers who bring fresh ideas from all areas,
+                including information retrieval, distributed computing,
+                large-scale system design, networking and data storage, security,
+                artificial intelligence, natural language processing,
+                UI design and mobile; the list goes on and is growing every day.
+                As a software engineer, you will work on a specific project
+                critical to Google’s needs with opportunities to switch teams
+                and projects as you and our fast-paced business grow and evolve.
+                We need our engineers to be versatile,
+                display leadership qualities and be enthusiastic to take on
+                new problems across the full-stack as we continue to push
+                technology forward.
+            </p>
+            <p class="paragraph">
+                Google aspires to be an organization that reflects the globally
+                diverse audience that our products and technology serve.
+                We believe that in addition to hiring the best talent,
+                a diversity of perspectives, ideas and cultures leads to the
+                creation of better products and services.
+            </p>
+            <p class="paragraph">
+                Google is and always will be an engineering company.
+                We hire people with a broad set of technical skills who are
+                ready to take on some of technology's greatest challenges
+                and make an impact on millions, if not billions, of users.
+                At Google, engineers not only revolutionize search,
+                they routinely work on massive scalability and storage solutions,
+                large-scale applications and entirely new platforms for developers
+                around the world. From AdWords to Chrome, Android to YouTube,
+                Social to Local, Google engineers are changing the world one
+                technological achievement after another.
+            </p>
+        </div>
     </div>
 </div>
 
