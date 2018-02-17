@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="room">
+    <div class="room" id="container">
         <div class="box right">
             <img class="icon right" alt="Avatar" src="img/avatar.png"/>
             <p class="chat right">
@@ -93,7 +93,13 @@
             </p>
         </div>
     </div>
-    <input class="input" placeholder="Say Something..."/>
+
+    <div id="input-div">
+        <input class="input" id="input-box" onkeydown="if (event.keyCode === 13)
+            document.getElementById('send-button').click()" placeholder="Say Something..."/>
+        <button id="send-button" onclick="sendMessage()"> Send </button>
+    </div>
 </body>
 
 </html>
+<script src = "scripts/chat.js"></script>

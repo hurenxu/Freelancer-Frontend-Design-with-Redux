@@ -42,22 +42,29 @@ body {
     float: right;
 }
 
-.input-bar {
-    display: table;
+#input-div {
+    width: 550px;
+    height: 45px;
+    vertical-align: middle;
+    display: table-cell;
+    background-color: #dddddd;
 }
 
-
 .input {
+    margin: 5px;
     padding: 5px 25px 5px 25px;
-    width: 500px;
-    height: 45px;
+    width: 350px;
     border: none;
     font-size: 24px;
     background-color: white;
     vertical-align: middle;
     display: table;
+    float: left;
 }
 
-.input:focus {
-    outline: none;
+#send-button {
+    margin: 5px;
+    padding: 5px 25px 5px 25px;
+    height: 35px;
+    float: right;
 }
