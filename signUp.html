@@ -22,17 +22,19 @@
 <body class="text-center">
 <form class="form-sign-in">
   <img src="img/logo.png" alt="" width="72" height="72">
-  <h1 class="h3 font-weight-normal">Welcome to Developed-In</h1>
+  <h1 class="h4 font-weight-normal">Welcome to Developed-In</h1>
   <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
   <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
   <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password" required>
   <input type="text" id="username" class="form-control" placeholder="Username" required>
   <div class="checkbox">
     <label>
-      <input type="checkbox" value="">Agree to Terms of Service
+      <input type="checkbox" id="agreeTerms" value="" required> Agree to Terms of Service
     </label>
   </div>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
 </form>
 </body>
 </html>
+
+<script src="scripts/SignUp.js"></script>
