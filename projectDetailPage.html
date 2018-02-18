@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="img/logo.png">
 
-    <title>Main Page</title>
+    <title>Project Detail</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet"
@@ -21,11 +21,10 @@
 </head>
 
 <body>
-
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Developed-In</a>
+            <a class="navbar-brand" href="./index.html">Developed-In</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,20 +54,19 @@
 </header>
 
 <div class="container">
-    <div class="jumbotron">
-        <img class="image my-4" style="max-width: 100%;" alt="App screen shot" src="img/app_detail.png">
+    <img class="image my-4" style="max-width: 100%;" alt="App screen shot" src="img/app_detail.png">
 
-        <div class="row">
-            <div class="col col-sm-10">
-                <h1>Application Title</h1>
-                <h3>Application Subtitle1</h3>
-                <h3>Application subtitle2</h3>
-            </div>
-            <div class="col col-sm-1 d-flex align-items-center">
-                <button class="btn btn-info mx-2" onclick="openChatWindow()" type="submit">Chat</button>
-                <button class="btn btn-info mx-2" type="submit">Apply</button>
-            </div>
+    <div class="row">
+        <div class="col col-sm-10">
+            <h1>Application Title</h1>
+            <h3>Application Subtitle1</h3>
+            <h3>Application subtitle2</h3>
         </div>
+        <div class="col col-sm-1 d-flex align-items-center">
+            <button class="btn btn-info mx-2" onclick="openChatWindow()" type="submit">Chat</button>
+            <button class="btn btn-info mx-2" type="submit">Apply</button>
+        </div>
+
 
         <div>
             <p class="paragraph">
@@ -111,7 +109,11 @@
             </p>
         </div>
     </div>
-</div>
+
+    <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2017-2018 Developed-In Inc.</p>
+    </footer>
 
 </body>
 </html>
