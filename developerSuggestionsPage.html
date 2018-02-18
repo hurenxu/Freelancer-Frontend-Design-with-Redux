@@ -43,9 +43,8 @@
                 </ul>
                 <form class="form-inline mt-2 mt-md-0">
                     <input class="form-control mr-4" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-info mx-1 float-right" type="submit">
-                        <i class="fas fa-user"></i> Joeyonng
-                    </button>
+                    <a class="btn btn-primary mx-1" id="signinRef" href="./signIn.html">Sign In</a>
+                    <a class="btn btn-info mx-1" id="signupRef" href="./signUp.html">Sign Up</a>
                 </form>
             </div>
         </div>
@@ -102,7 +101,7 @@
                         <div class="col-2 d-flex align-items-center">
                             <div>
                                 <div class="btn btn-primary btn-sm my-1" style="width: 100px">Contract</div>
-                                <div class="btn btn-primary btn-sm my-1" style="width: 100px">Chat</div>
+                                <div class="btn btn-primary btn-sm my-1" onclick="openChatWindow()" style="width: 100px">Chat</div>
                             </div>
                         </div>
                     </div>
@@ -113,3 +112,6 @@
     </div>
 </main>
 </body>
+
+<script src="scripts/DisplayUsername.js"></script>
+<script src="scripts/OpenChatWindow.js"></script>
