@@ -3,3 +3,9 @@ body {
   padding-bottom: 56px;
   color: #5a5a5a;
 }
+
+@media (min-width: 1440px) {
+  .container{
+    max-width: 1440px;
+  }
+}
