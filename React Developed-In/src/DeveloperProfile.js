@@ -24,7 +24,6 @@ class DeveloperProfile extends Component {
     render() {
         return (
             <div className='DeveloperProfile'>
-                <NavBar logged={true}/>
                 <Container style={{ marginTop: '7em' }}>
                     <Grid centered columns={2}>
                         <Grid.Column width={5}>
@@ -59,7 +58,7 @@ class DeveloperProfile extends Component {
                                         render: () =>
                                             <Tab.Pane>
                                                 {this.state.suggestions.map((suggestion) => (
-                                                    <ApplicationItem key={suggestion.toString()}/>
+                                                    <ApplicationItem key={suggestion.toString()} applied={false}/>
                                                 ))}
                                             </Tab.Pane>
                                     },
@@ -67,7 +66,7 @@ class DeveloperProfile extends Component {
                                         render: () =>
                                             <Tab.Pane>
                                                 {this.state.suggestions.map((suggestion) => (
-                                                    <ApplicationItem key={suggestion.toString()}/>
+                                                    <ApplicationItem key={suggestion.toString()} applied={true}/>
                                                 ))}
                                             </Tab.Pane>
                                     },

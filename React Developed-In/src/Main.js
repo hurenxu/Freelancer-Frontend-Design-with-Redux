@@ -9,12 +9,32 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            logged: false,
         };
     }
 
+    onSubmitLogin = () => {
+        this.setState({logged: true})
+    };
+
+    onSubmitSignUp = () => {
+        this.setState({logged: true})
+    };
+    onLogout = () => {
+        this.setState({logged: false})
+    };
+
     render() {
         return (
-            <NavBar/>
+            <div>
+                <NavBar
+                    logged={this.state.logged}
+                    onSubmitLogin={this.onSubmitLogin}
+                    onSubmitSignUp={this.onSubmitSignUp}
+                    onLogout={this.onLogout}
+                />
+                {this.props.children}
+            </div>
         );
     }
 }

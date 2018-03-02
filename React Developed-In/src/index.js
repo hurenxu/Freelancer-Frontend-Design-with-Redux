@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Main from './Main.js';
-import DeveloperProfile from './DeveloperProfile'
+import Routes from './route'
 
-ReactDOM.render(<DeveloperProfile />, document.getElementById('root'));
+ReactDOM.render(<Routes />, document.getElementById('root'));
