@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { Grid, Header, Container, Sticky} from 'semantic-ui-react'
 import { Item, Icon, Button, Card, Image, Divider, Label } from 'semantic-ui-react'
 import logo from './img/logo.svg'
 
-const propTypes = {
-    applied: PropTypes.boolean,
-    name: PropTypes.string,
-    description: PropTypes.string,
-    skills : PropTypes.array,
-    date: PropTypes.string,
-};
-
 const defaultProps = {
-    applied: false,
+    user: null,
     name: "Android implementation of the Messenger",
     description: "Description goes here...",
     skills: ["Java"],
     date: "Today",
+    status: "Pending for Approval"
 };
 
 class ApplicationItem extends Component {
@@ -28,7 +22,6 @@ class ApplicationItem extends Component {
             "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"};
 
     }
-
 
     render() {
         return (
@@ -41,7 +34,9 @@ class ApplicationItem extends Component {
                         <Item.Group>
                             <Item>
                                 <Item.Content>
-                                    <Item.Header as='a'>{this.props.name}</Item.Header>
+                                    <Item.Header>
+                                        <Link to="/application">{this.props.name}</Link>
+                                    </Item.Header>
                                     <Item.Description>{this.props.description}</Item.Description>
                                     <Item.Extra>
                                         {this.props.skills.map((skill) => (
@@ -52,24 +47,31 @@ class ApplicationItem extends Component {
                                             />
                                         ))}
                                     </Item.Extra>
-                                    <Item.Meta>
-                                        <Icon name='time' size='large'/>
-                                        Published on {this.props.date}
-                                    </Item.Meta>
+                                    {this.props.user === null ? (
+                                        <Item.Meta>
+                                            <Icon name='time' size='large'/>
+                                            Published on {this.props.date}
+                                        </Item.Meta>
+                                    ) : (
+                                        <Item.Meta>
+                                            <Icon name='info circle' size='large'/>
+                                            {this.props.status}
+                                        </Item.Meta>
+                                    )}
                                 </Item.Content>
                             </Item>
                         </Item.Group>
                     </Grid.Column>
                     <Grid.Column width={3} verticalAlign='middle'>
-                        {this.props.applied ? (
-                            <div>
-                                <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid color='teal' content="Go Chat"/>
-                                <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid color='grey' content="Contract"/>
-                            </div>
-                        ) : (
+                        {this.props.user === null ? (
                             <div>
                                 <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid color='grey' content="Apply"/>
                                 <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid basic color='grey' content="Save"/>
+                            </div>
+                        ) : (
+                            <div>
+                                <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid color='teal' content="Go Chat"/>
+                                <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid color='grey' content="Contract"/>
                             </div>
                         )}
                     </Grid.Column>
@@ -79,7 +81,5 @@ class ApplicationItem extends Component {
     }
 }
 
-ApplicationItem.propTypes = propTypes;
 ApplicationItem.defaultProps = defaultProps;
-
 export default ApplicationItem;

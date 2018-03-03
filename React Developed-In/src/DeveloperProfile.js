@@ -11,6 +11,7 @@ class DeveloperProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            tabIndex: 0,
             suggestions: ["test"],
             applications: [],
             resume: resume,
@@ -20,6 +21,10 @@ class DeveloperProfile extends Component {
         this.skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
             "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"}
     }
+
+    onChangeTab = (e, {activeIndex}) => {
+        this.setState({tabIndex: activeIndex})
+    };
 
     render() {
         return (
@@ -52,13 +57,15 @@ class DeveloperProfile extends Component {
                         </Grid.Column>
                         <Grid.Column width={11}>
                             <Tab
-                                menu = {{attached: true, tabular: true, widths: 3}}
+                                menu={{attached: true, tabular: true, widths: 3}}
+                                onTabChange={this.onChangeTab}
+                                activeIndex={this.state.tabIndex}
                                 panes={[
                                     {menuItem: 'Suggestions',
                                         render: () =>
                                             <Tab.Pane>
                                                 {this.state.suggestions.map((suggestion) => (
-                                                    <ApplicationItem key={suggestion.toString()} applied={false}/>
+                                                    <ApplicationItem key={suggestion.toString()} />
                                                 ))}
                                             </Tab.Pane>
                                     },
@@ -66,7 +73,7 @@ class DeveloperProfile extends Component {
                                         render: () =>
                                             <Tab.Pane>
                                                 {this.state.suggestions.map((suggestion) => (
-                                                    <ApplicationItem key={suggestion.toString()} applied={true}/>
+                                                    <ApplicationItem key={suggestion.toString()} user="Joeyonng"/>
                                                 ))}
                                             </Tab.Pane>
                                     },

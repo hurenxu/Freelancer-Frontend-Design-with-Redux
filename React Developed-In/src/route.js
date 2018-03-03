@@ -1,13 +1,17 @@
 import React from "react";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import Home from './Main'
+import Main from './Main'
+import Home from './ApplicationItem'
 import DeveloperProfile from './DeveloperProfile'
+import ApplicationDetail from './ApplicationDetail'
 
 const Routes = () => (
     <BrowserRouter>
-        <Home>
+        <Main>
+            <Route exact path="/home" component={Home} />
             <Route path="/developer" component={DeveloperProfile} />
-        </Home>
+            <Route path="/application" component={ApplicationDetail} />
+        </Main>
     </BrowserRouter>
 );
 
