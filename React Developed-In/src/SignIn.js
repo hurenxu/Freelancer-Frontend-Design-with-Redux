@@ -26,7 +26,7 @@ class SignIn extends Component {
                         <Form.Input fluid icon='user' iconPosition='left' placeholder='Username'/>
                         <Form.Input fluid icon='lock' iconPosition='left' placeholder='Password' type='password'/>
                         {this.props.signUp ? (
-                            <Form.Input fluid icon='ellipsis horizontal' iconPosition='left' placeholder='repeat Password' type='password'/>
+                            <Form.Input fluid icon='ellipsis horizontal' iconPosition='left' placeholder='Repeat Password' type='password'/>
                         ) : null}
                         {this.props.signUp ? (
                             <Button color='teal' fluid size='large' onClick={this.props.onSignUp}>

@@ -39,14 +39,14 @@ class ApplicationDetail extends Component {
                         <Grid.Column width={12}>
                             <Header as='h1'>{this.props.title}</Header>
                         </Grid.Column>
-                        <Grid.Column width={2}>
+                        <Grid.Column width={2} id='applyButton'>
                             {this.props.user === null ? (
                                 <Button fluid color='grey' content="Apply"/>
                             ): (
                                 <Button fluid color='teal' content="Go Chat"/>
                             )}
                         </Grid.Column>
-                        <Grid.Column width={2}>
+                        <Grid.Column width={2} id='contractButton'>
                             {this.props.user === null ? (
                                 <Button fluid basic color='grey' content="Save"/>
                             ): (
@@ -57,7 +57,7 @@ class ApplicationDetail extends Component {
                     <List size='large'>
                         <List.Item>
                             <List.Icon name='time' />
-                            <List.Content>Published on {this.props.date}</List.Content>
+                            <List.Content id='dateList'>Published on {this.props.date}</List.Content>
                         </List.Item>
                         <List.Item>
                             <List.Icon name='mail'/>

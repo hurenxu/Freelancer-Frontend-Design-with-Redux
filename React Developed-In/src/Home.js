@@ -42,7 +42,7 @@ class Home extends Component {
                 </Segment>
 
                 <Divider horizontal>Meet the Developers who have joined Developed-In</Divider>
-                <Card.Group centered itemsPerRow={6}>
+                <Card.Group centered itemsPerRow={6} id='cardGroup'>
                     <Card
                         image={people1}
                         header='Elliot Baker'
