@@ -52,12 +52,12 @@ class ApplicationItem extends Component {
                                         ))}
                                     </Item.Extra>
                                     {this.props.user === null ? (
-                                        <Item.Meta>
+                                        <Item.Meta id='itemStatus'>
                                             <Icon name='time' size='large'/>
                                             Published on {this.props.date}
                                         </Item.Meta>
                                     ) : (
-                                        <Item.Meta>
+                                        <Item.Meta id='itemStatus'>
                                             <Icon name='info circle' size='large'/>
                                             {this.props.status}
                                         </Item.Meta>
