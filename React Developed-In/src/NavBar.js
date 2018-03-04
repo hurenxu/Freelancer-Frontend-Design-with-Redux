@@ -28,7 +28,10 @@ class NavBar extends Component {
                         <Menu.Item as='a'>For Companies</Menu.Item>
                         <Menu.Item position='right'>
                             <Input
-                                icon='search'
+                                action={{
+                                    color: 'teal', content: 'Search',
+                                    onClick: ()=> this.props.history.push('/search')
+                                }}
                                 placeholder='Search...'
                                 onChange={(e, {value})=> this.setState({search: value})}
                             />

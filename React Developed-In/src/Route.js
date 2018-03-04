@@ -4,6 +4,7 @@ import Main from './Main'
 import Home from './Home'
 import DeveloperProfile from './DeveloperProfile'
 import ApplicationDetail from './ApplicationDetail'
+import SearchPage from './SearchPage'
 
 const Routes = () => (
     <BrowserRouter>
@@ -11,6 +12,7 @@ const Routes = () => (
             <Route exact path="/home" component={Home} />
             <Route path="/developer" component={DeveloperProfile} />
             <Route path="/application" component={ApplicationDetail} />
+            <Route path="/search" component={SearchPage}/>
         </Main>
     </BrowserRouter>
 );
