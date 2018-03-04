@@ -14,10 +14,6 @@ class NavBar extends Component {
         };
     }
 
-    onSearchChange = (e, {value}) => {
-        this.setState({search: value});
-    };
-
     render() {
         return (
             <div className='NavBar'>
@@ -31,7 +27,11 @@ class NavBar extends Component {
                         <Menu.Item as='a'>For Developers</Menu.Item>
                         <Menu.Item as='a'>For Companies</Menu.Item>
                         <Menu.Item position='right'>
-                            <Input icon='search' placeholder='Search...' onChange={this.onSearchChange}/>
+                            <Input
+                                icon='search'
+                                placeholder='Search...'
+                                onChange={(e, {value})=> this.setState({search: value})}
+                            />
                         </Menu.Item>
                         {this.props.sign ? (
                             <Menu.Item position='right'>

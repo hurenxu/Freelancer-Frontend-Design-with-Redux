@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import Main from './Main'
-import Home from './ApplicationItem'
+import Home from './Home'
 import DeveloperProfile from './DeveloperProfile'
 import ApplicationDetail from './ApplicationDetail'
 

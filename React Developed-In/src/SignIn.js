@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from 'semantic-ui-react'
-import { Menu, Dropdown, Form, Modal} from 'semantic-ui-react'
+import { Form, Modal} from 'semantic-ui-react'
 import { Header, Button, Input} from 'semantic-ui-react'
 
 class SignIn extends Component {
@@ -14,7 +14,7 @@ class SignIn extends Component {
     render() {
         return (
             <Modal size='tiny' dimmer='inverted' open={this.props.open} onClose={this.props.onClose}>
-                <Modal.Header content={this.props.signUp ? 'Sign Up' : 'Log In'}/>
+                <Modal.Header content={this.props.signUp ? 'Sign Up' : 'Sign In'}/>
                 <Container style={{width: '400px', marginTop: '2em', marginBottom: '2em'}}>
                     <Header as='h2' color='teal' textAlign='center'>
                         Developed-In

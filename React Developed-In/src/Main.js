@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
-import { Segment, Container } from 'semantic-ui-react'
-import { Icon, Button, Input} from 'semantic-ui-react'
-import { Menu, Dropdown } from 'semantic-ui-react'
-import { Header } from 'semantic-ui-react'
 import NavBar from './NavBar.js'
-import SignIn from "./SignIn";
+import SignIn from './SignIn'
+import Chat from './Chat'
 
 class Main extends Component {
     constructor(props) {

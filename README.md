@@ -7,7 +7,7 @@ Team member: Renxu Hu Zhizhen Qin Litao Qiao
 Get started
 ```
 npm install
-npm run
+npm start
 ```
 
 Semantic React ui: 

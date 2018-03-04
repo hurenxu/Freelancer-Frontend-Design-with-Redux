@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { Grid, Header, Container, Sticky} from 'semantic-ui-react'
 import { Item, Icon, Button, Card, Image, Divider, Label } from 'semantic-ui-react'
+import Chat from './Chat'
 import logo from './img/logo.svg'
 
 const defaultProps = {
@@ -18,9 +19,12 @@ class ApplicationItem extends Component {
     constructor(props) {
         super(props);
 
+        this.state={
+            chat: false,
+        };
+
         this.skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
             "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"};
-
     }
 
     render() {
@@ -65,16 +69,30 @@ class ApplicationItem extends Component {
                     <Grid.Column width={3} verticalAlign='middle'>
                         {this.props.user === null ? (
                             <div>
-                                <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid color='grey' content="Apply"/>
-                                <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid basic color='grey' content="Save"/>
+                                <Button
+                                    style={{marginTop: '4px', marginBottom: '4px'}}
+                                    fluid color='grey' content="Apply"
+                                />
                             </div>
                         ) : (
                             <div>
-                                <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid color='teal' content="Go Chat"/>
-                                <Button style={{marginTop: '4px', marginBottom: '4px'}} fluid color='grey' content="Contract"/>
+                                <Button
+                                    style={{marginTop: '4px', marginBottom: '4px'}}
+                                    fluid color='teal' content="Go Chat"
+                                    onClick={()=> this.setState({chat: true})}
+                                />
+                                <Button
+                                    style={{marginTop: '4px', marginBottom: '4px'}}
+                                    fluid color='grey' content="Contract"
+                                />
                             </div>
                         )}
                     </Grid.Column>
+                    <Chat
+                        open={this.state.chat}
+                        onClose={()=> this.setState({chat: false})}
+                        contact="FaceBook"
+                    />
                 </Grid>
             </div>
         );

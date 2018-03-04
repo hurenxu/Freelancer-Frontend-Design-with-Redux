@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Grid, Header, Container, Sticky} from 'semantic-ui-react'
 import { Item, Icon, Button, Card, Image, List } from 'semantic-ui-react'
+import Chat from './Chat'
 import image from './img/app_detail.png'
 
 const defaultProps = {
@@ -20,6 +20,10 @@ const defaultProps = {
 class ApplicationDetail extends Component {
     constructor(props) {
         super(props);
+
+        this.state={
+            chat: false,
+        };
 
         this.skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
             "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"};
@@ -66,6 +70,11 @@ class ApplicationDetail extends Component {
                     </List>
                     <p>{this.props.content}</p>
                 </Container>
+                <Chat
+                    open={this.state.chat}
+                    onClose={()=> this.setState({chat: false})}
+                    contact="FaceBook"
+                />
             </div>
         );
     }

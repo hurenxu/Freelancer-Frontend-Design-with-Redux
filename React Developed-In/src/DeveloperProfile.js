@@ -73,7 +73,10 @@ class DeveloperProfile extends Component {
                                         render: () =>
                                             <Tab.Pane>
                                                 {this.state.suggestions.map((suggestion) => (
-                                                    <ApplicationItem key={suggestion.toString()} user="Joeyonng"/>
+                                                    <ApplicationItem
+                                                        key={suggestion.toString()}
+                                                        user="Joeyonng"
+                                                    />
                                                 ))}
                                             </Tab.Pane>
                                     },
