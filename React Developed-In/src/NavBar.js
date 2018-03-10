@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
-import { Menu, Dropdown, Form, Modal} from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 import { Header, Button, Input} from 'semantic-ui-react'
+import List from './js/components/List'
 
 class NavBar extends Component {
     constructor(props) {
@@ -38,18 +39,8 @@ class NavBar extends Component {
                         </Menu.Item>
                         {this.props.sign ? (
                             <Menu.Item position='right'>
-                                <Dropdown
-                                    className='icon' text='Joeyonng' icon='user circle outline' labeled button
-                                >
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item onClick={()=> this.props.history.push('/developer')}>
-                                            My Profile
-                                        </Dropdown.Item>
-                                        <Dropdown.Item onClick={this.props.onSignOut}>
-                                            Sign Out
-                                        </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                <List history= {this.props.history}
+                                      onSignOut={this.props.onSignOut} />
                             </Menu.Item>
                         ) : (
                             <Menu.Item position='right'>

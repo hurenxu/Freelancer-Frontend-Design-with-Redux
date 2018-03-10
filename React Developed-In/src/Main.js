@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router'
-import NavBar from './NavBar.js'
+import NavBar from './NavBar'
 import SignIn from './SignIn'
-import Chat from './Chat'
 
 class Main extends Component {
     constructor(props) {
         super(props);
-        console.log("Main: " + this.props);
         this.state = {
             logged: false,
             signIn: false,

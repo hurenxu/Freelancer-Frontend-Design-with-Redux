@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types';
-import { Grid, Header, Container, Sticky} from 'semantic-ui-react'
-import { Item, Icon, Button, Card, Image, Divider, Label } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
+import { Item, Icon, Button, Image } from 'semantic-ui-react'
 import Chat from './Chat'
 import logo from './img/logo.svg'
 

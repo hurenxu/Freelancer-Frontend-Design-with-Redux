@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Header, Container, Sticky} from 'semantic-ui-react'
-import { Button, Card, Image, Divider } from 'semantic-ui-react'
-import { Menu, Tab } from 'semantic-ui-react'
-import NavBar from "./NavBar";
+import { Button, Card, Image } from 'semantic-ui-react'
+import { Tab } from 'semantic-ui-react'
 import ApplicationItem from "./ApplicationItem"
 import profile from './img/logo.svg'
 import resume from './img/resume.jpg'

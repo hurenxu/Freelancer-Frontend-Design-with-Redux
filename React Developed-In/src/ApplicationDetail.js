@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Header, Container, Sticky} from 'semantic-ui-react'
-import { Item, Icon, Button, Card, Image, List } from 'semantic-ui-react'
+import { Grid, Header, Container } from 'semantic-ui-react'
+import { Button, Image, List } from 'semantic-ui-react'
 import Chat from './Chat'
 import image from './img/app_detail.png'
 
