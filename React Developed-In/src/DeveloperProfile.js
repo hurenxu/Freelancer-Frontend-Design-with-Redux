@@ -5,10 +5,17 @@ import { Tab } from 'semantic-ui-react'
 import ApplicationItem from "./ApplicationItem"
 import profile from './img/logo.svg'
 import resume from './img/resume.jpg'
+import {addApplication} from "./redux/actions";
+import {connect} from "react-redux";
+
+const skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
+    "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"}
 
 class DeveloperProfile extends Component {
     constructor(props) {
         super(props);
+        console.log("DeveloperProfile", this.props);
+
         this.state = {
             tabIndex: 0,
             suggestions: ["test"],
@@ -17,8 +24,12 @@ class DeveloperProfile extends Component {
             skills: ["Java"],
         };
 
-        this.skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
-            "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"}
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps !== this.props) {
+            this.props = nextProps
+        }
     }
 
     onChangeTab = (e, {activeIndex}) => {
@@ -27,16 +38,17 @@ class DeveloperProfile extends Component {
 
     render() {
         return (
-            <div className='DeveloperProfile'>
-                <Container style={{ marginTop: '7em' }}>
+            <div className='DeveloperProfile' style={{ marginTop: '2em', marginBottom: '2em'}}>
+                <Container style={{ marginTop: '5em' }}>
                     <Grid centered columns={2}>
                         <Grid.Column width={5}>
                             <Sticky offset={100}>
                                 <Card fluid={true}>
                                     <Image src={profile} />
                                     <Card.Content>
-                                        <Card.Header style={{ fontSize: '24px' }} textAlign='center'> Litao Qiao </Card.Header>
-                                        <Card.Meta style={{ fontSize: '18px' }} textAlign='center'> Joined in 2015 </Card.Meta>
+                                        <Card.Header style={{ fontSize: '24px' }} textAlign='center'>
+                                            {this.props.account.username}
+                                        </Card.Header>
                                         <Card.Description style={{fontSize: '16px'}}>
                                             Personal Description goes here...
                                         </Card.Description>
@@ -47,7 +59,8 @@ class DeveloperProfile extends Component {
                                             <Button
                                                 inverted
                                                 key={skill.toString()}
-                                                color={this.skillColor[skill]} content={skill}
+                                                color={skillColor[skill]}
+                                                content={skill}
                                             />
                                         ))}
                                     </Card.Content>
@@ -63,18 +76,24 @@ class DeveloperProfile extends Component {
                                     {menuItem: 'Suggestions',
                                         render: () =>
                                             <Tab.Pane>
-                                                {this.state.suggestions.map((suggestion) => (
-                                                    <ApplicationItem key={suggestion.toString()} />
-                                                ))}
+                                                {this.props.account.suggestions.map((suggestion) =>
+                                                    <ApplicationItem
+                                                        key={suggestion.id}
+                                                        apply={()=> {
+                                                            this.props.addApplication(this.props.account, suggestion)
+                                                        }}
+                                                        application={suggestion}
+                                                    />
+                                                )}
                                             </Tab.Pane>
                                     },
                                     {menuItem: 'Applications',
                                         render: () =>
                                             <Tab.Pane>
-                                                {this.state.suggestions.map((suggestion) => (
+                                                {this.props.account.applications.map((application) => (
                                                     <ApplicationItem
-                                                        key={suggestion.toString()}
-                                                        user="Joeyonng"
+                                                        key={application.id}
+                                                        application={application}
                                                     />
                                                 ))}
                                             </Tab.Pane>
@@ -93,4 +112,18 @@ class DeveloperProfile extends Component {
     }
 }
 
-export default DeveloperProfile;
+const mapStateToProps = (state) => {
+    return {
+        account: state.account,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addApplication: (account, application) => {
+            return dispatch(addApplication(account, application))
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeveloperProfile);

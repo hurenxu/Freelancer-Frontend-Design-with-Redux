@@ -5,25 +5,18 @@ import { Item, Icon, Button, Image } from 'semantic-ui-react'
 import Chat from './Chat'
 import logo from './img/logo.svg'
 
-const defaultProps = {
-    user: null,
-    name: "Android implementation of the Messenger",
-    description: "Description goes here...",
-    skills: ["Java"],
-    date: "Today",
-    status: "Pending for Approval"
-};
+const skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
+    "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"};
 
 class ApplicationItem extends Component {
     constructor(props) {
         super(props);
+        console.log("ApplicationItem", this.props);
 
         this.state={
             chat: false,
         };
 
-        this.skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
-            "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"};
     }
 
     render() {
@@ -38,27 +31,31 @@ class ApplicationItem extends Component {
                             <Item>
                                 <Item.Content>
                                     <Item.Header>
-                                        <Link to="/application">{this.props.name}</Link>
+                                        <Link to={"/application/" + this.props.application.id}>
+                                            {this.props.application.title}
+                                        </Link>
                                     </Item.Header>
-                                    <Item.Description>{this.props.description}</Item.Description>
+                                    <Item.Description>
+                                        {this.props.application.description}
+                                    </Item.Description>
                                     <Item.Extra>
-                                        {this.props.skills.map((skill) => (
+                                        {this.props.application.skills.map((skill) => (
                                             <Button
                                                 inverted size='mini'
                                                 key={skill.toString()}
-                                                color={this.skillColor[skill]} content={skill}
+                                                color={skillColor[skill]} content={skill}
                                             />
                                         ))}
                                     </Item.Extra>
-                                    {this.props.user === null ? (
+                                    {this.props.apply !== undefined ? (
                                         <Item.Meta id='itemStatus'>
                                             <Icon name='time' size='large'/>
-                                            Published on {this.props.date}
+                                            Published on {this.props.application.date}
                                         </Item.Meta>
                                     ) : (
                                         <Item.Meta id='itemStatus'>
                                             <Icon name='info circle' size='large'/>
-                                            {this.props.status}
+                                            {this.props.application.status}
                                         </Item.Meta>
                                     )}
                                 </Item.Content>
@@ -66,25 +63,18 @@ class ApplicationItem extends Component {
                         </Item.Group>
                     </Grid.Column>
                     <Grid.Column width={3} verticalAlign='middle'>
-                        {this.props.user === null ? (
-                            <div>
-                                <Button
-                                    style={{marginTop: '4px', marginBottom: '4px'}}
-                                    fluid color='grey' content="Apply"
-                                />
-                            </div>
+                        {this.props.apply !== undefined ? (
+                            <Button
+                                style={{marginTop: '4px', marginBottom: '4px'}}
+                                fluid color='grey' content="Apply"
+                                onClick={()=> this.props.apply()}
+                            />
                         ) : (
-                            <div>
-                                <Button
-                                    style={{marginTop: '4px', marginBottom: '4px'}}
-                                    fluid color='teal' content="Go Chat"
-                                    onClick={()=> this.setState({chat: true})}
-                                />
-                                <Button
-                                    style={{marginTop: '4px', marginBottom: '4px'}}
-                                    fluid color='grey' content="Contract"
-                                />
-                            </div>
+                            <Button
+                                style={{marginTop: '4px', marginBottom: '4px'}}
+                                fluid color='teal' content="Go Chat"
+                                onClick={()=> this.setState({chat: true})}
+                            />
                         )}
                     </Grid.Column>
                     <Chat
@@ -98,5 +88,4 @@ class ApplicationItem extends Component {
     }
 }
 
-ApplicationItem.defaultProps = defaultProps;
 export default ApplicationItem;

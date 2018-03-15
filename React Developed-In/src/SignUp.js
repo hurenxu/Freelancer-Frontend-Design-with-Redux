@@ -1,18 +1,21 @@
-import React, {Component} from 'react';
-import {Container, Modal, Header, Form, Button, Message} from 'semantic-ui-react'
-import {connect} from "react-redux";
-import {changeAccount} from "./redux/actions";
+import React, { Component } from 'react';
+import {Container, Message} from 'semantic-ui-react'
+import { Form, Modal } from 'semantic-ui-react'
+import { Header, Button } from 'semantic-ui-react'
+import { addAccount } from "./redux/actions";
+import { connect } from "react-redux";
 
 let initialState = {
     username: "",
     password: "",
+    repeat: "",
     message: [],
 };
 
-class SignIn extends Component {
+class SignUp extends Component {
     constructor(props) {
         super(props);
-        console.log("SignIn", this.props);
+        console.log("SignUp", this.props);
 
         this.state = initialState;
     }
@@ -25,29 +28,36 @@ class SignIn extends Component {
 
     handleSubmit = (event) => {
         let message = [];
-
         if(this.state.username === "") message.push("Username can't be empty!");
         if(this.state.password === "") message.push("Password can't be empty!");
+        if(this.state.repeat === "") message.push("Please enter your password again!");
 
-        let found = false;
-        for(let i = 0; i < this.props.accounts.length; i++) {
-            if (this.props.accounts[i].username === this.state.username) {
-                if (this.props.accounts[i].password === this.state.password) {
-                    this.props.changeAccount(this.state.username);
-                    this.props.onClose();
+        if(message.length === 0) {
+            for(let i = 0; i < this.props.accounts.length; i++) {
+                if(this.props.accounts[i].username === this.state.username) {
+                    message.push("Username has been taken!");
+                    break;
                 }
-                else {
-                    message.push("Password is not correct!");
-                }
-                found = true;
-                break;
             }
+
+            if(this.state.password !== this.state.repeat) {
+                message.push("Password is not matching!");
+            }
+
+        }
+        else {
+            this.setState({message: message});
+            return
         }
 
-        if(!found) {
-            message.push("Username can't be found!");
+        if(message.length === 0) {
+            this.props.addAccount(this.state.username, this.state.password);
+            this.props.onClose();
         }
-        this.setState({message: message})
+        else {
+            this.setState({message: message});
+        }
+
     };
 
     render() {
@@ -56,7 +66,7 @@ class SignIn extends Component {
                 size='tiny' dimmer='inverted' open={this.props.open}
                 onClose={()=> {this.setState(initialState); this.props.onClose()}}
             >
-                <Modal.Header content='Sign In'/>
+                <Modal.Header content='Sign Up'/>
                 <Container style={{width: '400px', marginTop: '2em', marginBottom: '2em'}}>
                     <Header as='h2' color='teal' textAlign='center'>
                         Developed-In
@@ -70,9 +80,13 @@ class SignIn extends Component {
                             fluid icon='lock' iconPosition='left' placeholder='Password' type='password'
                             onChange={(e, {value})=> this.setState({password: value})}
                         />
+                        <Form.Input
+                            fluid icon='ellipsis horizontal' iconPosition='left' placeholder='Repeat Password' type='password'
+                            onChange={(e, {value})=> this.setState({repeat: value})}
+                        />
                         <Button
                             color='teal' fluid size='large' onClick={this.handleSubmit}
-                        >Sign In</Button>
+                        >Sign Up</Button>
                     </Form>
                     {this.state.message.length > 0 ? (
                         <Message
@@ -92,10 +106,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeAccount: (username) => {
-            return dispatch(changeAccount(username))
+        addAccount: (username, password) => {
+            return dispatch(addAccount(username, password))
         },
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
