@@ -11,7 +11,7 @@ describe('Add application action', () => {
             id: id
         };
 
-        const action = actions.addApplication(account);
+        const action = actions.addApplication(id);
 
         expect(action).toEqual(expectedAction);
     });
