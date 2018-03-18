@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {Container, Message} from 'semantic-ui-react'
 import { Form, Modal } from 'semantic-ui-react'
 import { Header, Button } from 'semantic-ui-react'
-import { addAccount } from "./redux/actions";
+import {changeAccount} from "./redux/actions";
 import { connect } from "react-redux";
+import {addAccount, loadAccount} from "./redux/ajax";
 
 let initialState = {
     username: "",
@@ -28,36 +29,45 @@ class SignUp extends Component {
 
     handleSubmit = (event) => {
         let message = [];
-        if(this.state.username === "") message.push("Username can't be empty!");
-        if(this.state.password === "") message.push("Password can't be empty!");
-        if(this.state.repeat === "") message.push("Please enter your password again!");
-
-        if(message.length === 0) {
-            for(let i = 0; i < this.props.accounts.length; i++) {
-                if(this.props.accounts[i].username === this.state.username) {
-                    message.push("Username has been taken!");
-                    break;
-                }
-            }
-
-            if(this.state.password !== this.state.repeat) {
-                message.push("Password is not matching!");
-            }
-
+        if(this.state.username === "") {
+            message.push("Username can't be empty!");
+            this.setState({message: message});
+            return
         }
-        else {
+        if(this.state.password === "") {
+            message.push("Password can't be empty!");
+            this.setState({message: message});
+            return
+        }
+        if(this.state.repeat === "") {
+            message.push("Please enter your password again!");
+            this.setState({message: message});
+            return
+        }
+        if(this.state.password !== this.state.repeat) {
+            message.push("Password is not matching!");
             this.setState({message: message});
             return
         }
 
-        if(message.length === 0) {
-            this.props.addAccount(this.state.username, this.state.password);
-            this.props.onClose();
-        }
-        else {
-            this.setState({message: message});
-        }
 
+        let loadAccountPromise = loadAccount(this.state.username);
+        loadAccountPromise.then(account => {
+            if(account != null) {
+                message.push("Username has been taken!");
+                this.setState({message: message});
+                return
+            }
+
+            let addAccountPromise = addAccount(this.state.username, this.state.password);
+            addAccountPromise.then(account => {
+                this.props.changeAccount(account);
+                this.props.onClose();
+            })
+
+        }).catch(error => {
+            throw(error);
+        });
     };
 
     render() {
@@ -100,16 +110,12 @@ class SignUp extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {accounts: state.accounts};
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        addAccount: (username, password) => {
-            return dispatch(addAccount(username, password))
+        changeAccount: (account) => {
+            return dispatch(changeAccount(account))
         },
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(null, mapDispatchToProps)(SignUp);

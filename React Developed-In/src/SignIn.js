@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Container, Modal, Header, Form, Button, Message} from 'semantic-ui-react'
 import {connect} from "react-redux";
 import {changeAccount} from "./redux/actions";
+import {loadAccount} from "./redux/ajax";
 
 let initialState = {
     username: "",
@@ -25,29 +26,37 @@ class SignIn extends Component {
 
     handleSubmit = (event) => {
         let message = [];
+        if(this.state.username === "") {
+            message.push("Username can't be empty!");
+            this.setState({message: message});
+            return;
+        }
+        if(this.state.password === "") {
+            message.push("Password can't be empty!");
+            this.setState({message: message});
+            return;
+        }
 
-        if(this.state.username === "") message.push("Username can't be empty!");
-        if(this.state.password === "") message.push("Password can't be empty!");
-
-        let found = false;
-        for(let i = 0; i < this.props.accounts.length; i++) {
-            if (this.props.accounts[i].username === this.state.username) {
-                if (this.props.accounts[i].password === this.state.password) {
-                    this.props.changeAccount(this.state.username);
-                    this.props.onClose();
-                }
-                else {
-                    message.push("Password is not correct!");
-                }
-                found = true;
-                break;
+        loadAccount(this.state.username).then(account => {
+            console.log(account);
+            if(account === null) {
+                message.push("Username can't be found!");
+                this.setState({message: message});
+                return;
             }
-        }
 
-        if(!found) {
-            message.push("Username can't be found!");
-        }
-        this.setState({message: message})
+            if (account.password !== this.state.password) {
+                message.push("Password is not correct!");
+                this.setState({message: message});
+                return;
+            }
+
+            this.props.changeAccount(account);
+            this.props.onClose();
+
+        }).catch(error => {
+            throw(error);
+        });
     };
 
     render() {
@@ -86,16 +95,12 @@ class SignIn extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {accounts: state.accounts};
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeAccount: (username) => {
-            return dispatch(changeAccount(username))
+        changeAccount: (account) => {
+            return dispatch(changeAccount(account))
         },
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(SignIn);

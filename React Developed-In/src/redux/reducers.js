@@ -1,40 +1,18 @@
-import {ADD_ACCOUNT} from "./actions.js";
 import {ADD_APPLICATION, CHANGE_ACCOUNT} from "./actions";
 import {applicationData, accountData} from './database.js'
+import {loadAccount} from "./ajax";
 
 const initialState = {
-    account: accountData[0],
+    account: null,
     accounts: accountData,
     applications: applicationData,
 };
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_ACCOUNT:
-            let newAccount = {
-                username: action.username,
-                password: action.password,
-                applications: [],
-                suggestions: applicationData,
-            };
-
-            return Object.assign({}, state, {
-                account: newAccount,
-                accounts: [
-                    ...state.accounts,
-                    newAccount,
-                ],
-            });
         case CHANGE_ACCOUNT:
-            let account = null;
-            for(let i = 0; i < state.accounts.length; i++){
-                if(state.accounts[i].username === action.username){
-                    account = state.accounts[i]
-                }
-            }
-
             return Object.assign({}, state, {
-                account: account,
+                account: action.account,
             });
         case ADD_APPLICATION:
             let accounts = state.accounts.slice();

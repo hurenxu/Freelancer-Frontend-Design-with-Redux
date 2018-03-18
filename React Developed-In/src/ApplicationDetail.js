@@ -3,6 +3,7 @@ import {Grid, Header, Container, Button, Image, List} from 'semantic-ui-react'
 import {connect} from "react-redux";
 import Chat from './Chat'
 import {addApplication} from "./redux/actions";
+import {loadApplications} from "./redux/ajax";
 
 class ApplicationDetail extends Component {
     constructor(props) {
@@ -11,26 +12,33 @@ class ApplicationDetail extends Component {
 
         this.state={
             chat: false,
+            application: null,
         };
-        this.application = this.props.applications[parseInt(this.props.location.pathname.slice(-1))]
+
+        loadApplications(parseInt(this.props.location.pathname.slice(-1))).then((application)=> {
+            this.setState({application: application});
+            console.log(this.state);
+        });
     }
 
     render() {
-        return (
+        return this.state.application === null ? (
+            <div>Loading...</div>
+        ) : (
             <div className='applicationItem' style={{ marginTop: '52px', marginBottom: '52px'}}>
                 <Container>
-                    <Image style={{ marginBottom: '2em' }} src={this.application.image} fluid />
+                    <Image style={{ marginBottom: '2em' }} src={this.state.application.image} fluid />
                     <Grid>
                         <Grid.Column width={14}>
-                            <Header as='h1'>{this.application.title}</Header>
+                            <Header as='h1'>{this.state.application.title}</Header>
                         </Grid.Column>
                         <Grid.Column width={2}>
-                            {this.application.accounts.includes(this.props.account) ? (
+                            {this.state.application.accounts.includes(this.props.account) ? (
                                 <Button fluid color='teal' content="Go Chat"/>
                             ): (
                                 <Button
                                     fluid color='grey' content="Apply"
-                                    onClick={()=> this.props.addApplication(this.props.account, this.application)}
+                                    onClick={()=> this.props.addApplication(this.props.account, this.state.application)}
                                 />
                             )}
                         </Grid.Column>
@@ -38,23 +46,23 @@ class ApplicationDetail extends Component {
                     <List size='large'>
                         <List.Item>
                             <List.Icon name='time' />
-                            <List.Content id='dateList'>Published on {this.application.date}</List.Content>
+                            <List.Content id='dateList'>Published on {this.state.application.date}</List.Content>
                         </List.Item>
                         <List.Item>
                             <List.Icon name='mail'/>
-                            <List.Content>Contact: {this.application.contact}</List.Content>
+                            <List.Content>Contact: {this.state.application.contact}</List.Content>
                         </List.Item>
                         <List.Item>
                             <List.Icon name='android' />
-                            <List.Content>{this.application.type}</List.Content>
+                            <List.Content>{this.state.application.type}</List.Content>
                         </List.Item>
                     </List>
-                    <p>{this.application.content}</p>
+                    <p>{this.state.application.content}</p>
                 </Container>
                 <Chat
                     open={this.state.chat}
                     onClose={()=> this.setState({chat: false})}
-                    contact={this.application.contact}
+                    contact={this.state.application.contact}
                 />
             </div>
         );
