@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Divider, Grid, Header, Image, Card, Segment } from 'semantic-ui-react'
+import style from './style/style.css'
 import coffee from './img/coffee.png'
 import people1 from './img/people1.jpg'
 import people2 from './img/people2.jpg'
@@ -9,8 +10,8 @@ import people4 from './img/people4.jpg'
 class Home extends Component {
     render() {
         return (
-            <div>
-                <Segment style={{ padding: '8em 0em' }} vertical>
+            <div className={style.body}>
+                <Segment  vertical>
                     <Grid container verticalAlign='middle'>
                         <Grid.Column width={8}>
                             <Header as='h3' style={{ fontSize: '2em' }}>

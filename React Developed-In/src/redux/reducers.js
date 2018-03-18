@@ -11,14 +11,14 @@ const rootReducer = (state = initialState, action) => {
                 account: action.account,
             });
         case ADD_APPLICATION:
-            let account = state.account;
+            let account = Object.assign({}, state.account);
 
             account.applications.push(action.id);
             let index = account.suggestions.indexOf(action.id);
             if (index !== -1) account.suggestions.splice(index, 1);
 
             return Object.assign({}, state, {
-                account: action.account,
+                account: account,
             });
 
         default:

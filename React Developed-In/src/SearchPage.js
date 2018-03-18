@@ -3,6 +3,7 @@ import {Container} from "semantic-ui-react";
 import {connect} from "react-redux";
 import ApplicationItem from "./ApplicationItem";
 import {loadSearchApplications} from "./redux/ajax";
+import style from "./style/style.css"
 
 class SearchPage extends Component {
     constructor() {
@@ -19,8 +20,8 @@ class SearchPage extends Component {
 
     render() {
         return (
-            <div className='applicationItem' style={{ marginTop: '2em', marginBottom: '2em'}}>
-                <Container style={{ marginTop: '5em' }}>
+            <div className={style.body}>
+                <Container>
                     {this.state.applications.map((application) =>
                         <ApplicationItem key={application.id} id={application.id}/>
                     )}
