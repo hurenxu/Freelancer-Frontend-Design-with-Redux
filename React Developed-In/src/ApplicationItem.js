@@ -28,7 +28,7 @@ class ApplicationItem extends Component {
     }
 
     onClickApply = () => {
-        this.props.addApplication(this.props.account, this.id);
+        this.props.addApplication(this.id);
         accountAddApplication(this.props.account, this.id);
     };
 
@@ -36,7 +36,7 @@ class ApplicationItem extends Component {
         return this.state.application === null ? (
             <div>Loading...</div>
         ) : (
-            <div className='applicationItem' style={{ marginTop: '2em', marginBottom: '2em'}}>
+            <div>
                 <Grid>
                     <Grid.Column width={3} verticalAlign='middle'>
                         <Image src={logo} />
@@ -112,8 +112,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addApplication: (account, id) => {
-            return dispatch(addApplication(account, id))
+        addApplication: (id) => {
+            return dispatch(addApplication(id))
         },
     };
 };

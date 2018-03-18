@@ -6,6 +6,7 @@ import ApplicationItem from "./ApplicationItem"
 import profile from './img/logo.svg'
 import resume from './img/resume.jpg'
 import {connect} from "react-redux";
+import style from "./style/style.css"
 
 const skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
     "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"}
@@ -37,7 +38,7 @@ class DeveloperProfile extends Component {
 
     render() {
         return (
-            <div className='DeveloperProfile' style={{ marginTop: '2em', marginBottom: '2em'}}>
+            <div className={style.body}>
                 <Container style={{ marginTop: '5em' }}>
                     <Grid centered columns={2}>
                         <Grid.Column width={5}>

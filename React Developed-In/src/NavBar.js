@@ -26,7 +26,7 @@ class NavBar extends Component {
 
     render() {
         return (
-            <div className='NavBar'>
+            <div>
                 <Menu size='large' borderless={true} fixed='top'>
                     <Container>
                         <Menu.Item><Header><Link to="/home">Developed-In</Link></Header></Menu.Item>

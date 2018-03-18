@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import Chat from './Chat'
 import {addApplication} from "./redux/actions";
 import {accountAddApplication, loadApplication} from "./redux/ajax";
+import style from "./style/style.css"
 
 class ApplicationDetail extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class ApplicationDetail extends Component {
     }
 
     onClickApply = () => {
-        this.props.addApplication(this.props.account, this.id);
+        this.props.addApplication(this.id);
         accountAddApplication(this.props.account, this.id);
     };
 
@@ -30,7 +31,7 @@ class ApplicationDetail extends Component {
         return this.state.application === null ? (
             <div>Loading...</div>
         ) : (
-            <div className='applicationItem' style={{ marginTop: '52px', marginBottom: '52px'}}>
+            <div className={style.body}>
                 <Container>
                     <Image style={{ marginBottom: '2em' }} src={this.state.application.image} fluid />
                     <Grid>
@@ -82,8 +83,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addApplication: (account, id) => {
-            return dispatch(addApplication(account, id))
+        addApplication: (id) => {
+            return dispatch(addApplication(id))
         },
     };
 };
