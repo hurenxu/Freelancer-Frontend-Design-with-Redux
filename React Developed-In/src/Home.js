@@ -7,13 +7,9 @@ import people3 from './img/people3.jpg'
 import people4 from './img/people4.jpg'
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            <div className='Index' >
+            <div>
                 <Segment style={{ padding: '8em 0em' }} vertical>
                     <Grid container verticalAlign='middle'>
                         <Grid.Column width={8}>

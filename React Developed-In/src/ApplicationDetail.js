@@ -1,84 +1,90 @@
-import React, { Component } from 'react';
-import { Grid, Header, Container, Sticky} from 'semantic-ui-react'
-import { Item, Icon, Button, Card, Image, List } from 'semantic-ui-react'
+import React, {Component} from 'react';
+import {Grid, Header, Container, Button, Image, List} from 'semantic-ui-react'
+import {connect} from "react-redux";
 import Chat from './Chat'
-import image from './img/app_detail.png'
-
-const defaultProps = {
-    user: null,
-    status: "Pending for Approval",
-    title: "Android implementation of the Messenger",
-    description: "Description goes here...",
-    content: "",
-    image: image,
-    skills: ["Java"],
-    date: "Today",
-    contact: "aaaa_xxxx_yyyy@163.com",
-    type: "Android"
-};
+import {addApplication} from "./redux/actions";
+import {accountAddApplication, loadApplication} from "./redux/ajax";
 
 class ApplicationDetail extends Component {
     constructor(props) {
         super(props);
+        console.log("ApplicationDetail", this.props);
 
         this.state={
             chat: false,
+            application: null,
         };
 
-        this.skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
-            "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"};
-
+        this.id = parseInt(this.props.location.pathname.slice(-1), 10);
+        loadApplication(this.id).then((application)=> {
+            this.setState({application: application});
+        });
     }
 
+    onClickApply = () => {
+        this.props.addApplication(this.props.account, this.id);
+        accountAddApplication(this.props.account, this.id);
+    };
+
     render() {
-        return (
+        return this.state.application === null ? (
+            <div>Loading...</div>
+        ) : (
             <div className='applicationItem' style={{ marginTop: '52px', marginBottom: '52px'}}>
                 <Container>
-                    <Image style={{ marginBottom: '2em' }} src={this.props.image} fluid />
+                    <Image style={{ marginBottom: '2em' }} src={this.state.application.image} fluid />
                     <Grid>
-                        <Grid.Column width={12}>
-                            <Header as='h1'>{this.props.title}</Header>
+                        <Grid.Column width={14}>
+                            <Header as='h1'>{this.state.application.title}</Header>
                         </Grid.Column>
-                        <Grid.Column width={2} id='applyButton'>
-                            {this.props.user === null ? (
-                                <Button fluid color='grey' content="Apply"/>
+                        <Grid.Column width={2}>
+                            {this.props.account === null || !this.props.account.applications.includes(this.id) ? (
+                                <Button
+                                    fluid color='grey' content="Apply"
+                                    onClick={()=> this.onClickApply}
+                                />
                             ): (
                                 <Button fluid color='teal' content="Go Chat"/>
-                            )}
-                        </Grid.Column>
-                        <Grid.Column width={2} id='contractButton'>
-                            {this.props.user === null ? (
-                                <Button fluid basic color='grey' content="Save"/>
-                            ): (
-                                <Button fluid color='grey' content="Contract"/>
                             )}
                         </Grid.Column>
                     </Grid>
                     <List size='large'>
                         <List.Item>
                             <List.Icon name='time' />
-                            <List.Content id='dateList'>Published on {this.props.date}</List.Content>
+                            <List.Content id='dateList'>Published on {this.state.application.date}</List.Content>
                         </List.Item>
                         <List.Item>
                             <List.Icon name='mail'/>
-                            <List.Content>Contact: {this.props.contact}</List.Content>
+                            <List.Content>Contact: {this.state.application.contact}</List.Content>
                         </List.Item>
                         <List.Item>
                             <List.Icon name='android' />
-                            <List.Content>{this.props.type}</List.Content>
+                            <List.Content>{this.state.application.type}</List.Content>
                         </List.Item>
                     </List>
-                    <p>{this.props.content}</p>
+                    <p>{this.state.application.content}</p>
                 </Container>
                 <Chat
                     open={this.state.chat}
                     onClose={()=> this.setState({chat: false})}
-                    contact="FaceBook"
+                    contact={this.state.application.contact}
                 />
             </div>
         );
     }
 }
 
-ApplicationDetail.defaultProps = defaultProps;
-export default ApplicationDetail;
+const mapStateToProps = (state) => {
+    return {
+        account: state.account,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addApplication: (account, id) => {
+            return dispatch(addApplication(account, id))
+        },
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ApplicationDetail);

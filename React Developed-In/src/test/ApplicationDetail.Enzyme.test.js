@@ -4,7 +4,7 @@ import {mount, shallow} from 'enzyme';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import TestUtils from 'react-dom/test-utils';
-import ApplicationDetail from './ApplicationDetail.js';
+import ApplicationDetail from '../ApplicationDetail.js';
 
 
 Enzyme.configure({ adapter: new Adapter() });
