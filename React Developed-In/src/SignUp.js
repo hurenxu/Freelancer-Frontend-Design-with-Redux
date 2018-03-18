@@ -1,19 +1,22 @@
-import React, {Component} from 'react';
-import {Container, Modal, Header, Form, Button, Message} from 'semantic-ui-react'
-import {connect} from "react-redux";
+import React, { Component } from 'react';
+import {Container, Message} from 'semantic-ui-react'
+import { Form, Modal } from 'semantic-ui-react'
+import { Header, Button } from 'semantic-ui-react'
 import {changeAccount} from "./redux/actions";
-import {loadAccount} from "./redux/ajax";
+import { connect } from "react-redux";
+import {addAccount, loadAccount} from "./redux/ajax";
 
 let initialState = {
     username: "",
     password: "",
+    repeat: "",
     message: [],
 };
 
-class SignIn extends Component {
+class SignUp extends Component {
     constructor(props) {
         super(props);
-        console.log("SignIn", this.props);
+        console.log("SignUp", this.props);
 
         this.state = initialState;
     }
@@ -29,30 +32,41 @@ class SignIn extends Component {
         if(this.state.username === "") {
             message.push("Username can't be empty!");
             this.setState({message: message});
-            return;
+            return
         }
         if(this.state.password === "") {
             message.push("Password can't be empty!");
             this.setState({message: message});
-            return;
+            return
+        }
+        if(this.state.repeat === "") {
+            message.push("Please enter your password again!");
+            this.setState({message: message});
+            return
+        }
+        if(this.state.password !== this.state.repeat) {
+            message.push("Password is not matching!");
+            this.setState({message: message});
+            return
         }
 
-        loadAccount(this.state.username).then(account => {
-            console.log(account);
-            if(account === null) {
-                message.push("Username can't be found!");
+
+        let loadAccountPromise = loadAccount(this.state.username);
+        loadAccountPromise.then(account => {
+            if(account != null) {
+                message.push("Username has been taken!");
                 this.setState({message: message});
-                return;
+                return
             }
 
-            if (account.password !== this.state.password) {
-                message.push("Password is not correct!");
-                this.setState({message: message});
-                return;
-            }
+            let addAccountPromise = addAccount(this.state.username, this.state.password);
+            addAccountPromise.then(account => {
+                this.props.changeAccount(account);
+                this.props.onClose();
+            })
 
-            this.props.changeAccount(account);
-            this.props.onClose();
+        }).catch(error => {
+            throw(error);
         });
     };
 
@@ -62,7 +76,7 @@ class SignIn extends Component {
                 size='tiny' dimmer='inverted' open={this.props.open}
                 onClose={()=> {this.setState(initialState); this.props.onClose()}}
             >
-                <Modal.Header content='Sign In'/>
+                <Modal.Header content='Sign Up'/>
                 <Container style={{width: '400px', marginTop: '2em', marginBottom: '2em'}}>
                     <Header as='h2' color='teal' textAlign='center'>
                         Developed-In
@@ -76,9 +90,13 @@ class SignIn extends Component {
                             fluid icon='lock' iconPosition='left' placeholder='Password' type='password'
                             onChange={(e, {value})=> this.setState({password: value})}
                         />
+                        <Form.Input
+                            fluid icon='ellipsis horizontal' iconPosition='left' placeholder='Repeat Password' type='password'
+                            onChange={(e, {value})=> this.setState({repeat: value})}
+                        />
                         <Button
                             color='teal' fluid size='large' onClick={this.handleSubmit}
-                        >Sign In</Button>
+                        >Sign Up</Button>
                     </Form>
                     {this.state.message.length > 0 ? (
                         <Message
@@ -100,4 +118,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(SignUp);

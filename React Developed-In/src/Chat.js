@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Container, Segment } from 'semantic-ui-react'
-import { Form, Modal} from 'semantic-ui-react'
-import { Header, Button, Input} from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
+import { Modal} from 'semantic-ui-react'
+import { Input} from 'semantic-ui-react'
 
 class Chat extends Component {
     constructor(props) {
