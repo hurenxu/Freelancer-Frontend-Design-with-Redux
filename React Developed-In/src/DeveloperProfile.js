@@ -5,7 +5,6 @@ import { Tab } from 'semantic-ui-react'
 import ApplicationItem from "./ApplicationItem"
 import profile from './img/logo.svg'
 import resume from './img/resume.jpg'
-import {addApplication} from "./redux/actions";
 import {connect} from "react-redux";
 
 const skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
@@ -76,25 +75,16 @@ class DeveloperProfile extends Component {
                                     {menuItem: 'Suggestions',
                                         render: () =>
                                             <Tab.Pane>
-                                                {this.props.account.suggestions.map((suggestion) =>
-                                                    <ApplicationItem
-                                                        key={suggestion.id}
-                                                        apply={()=> {
-                                                            this.props.addApplication(this.props.account, suggestion)
-                                                        }}
-                                                        application={suggestion}
-                                                    />
+                                                {this.props.account.suggestions.map((id) =>
+                                                    <ApplicationItem key={id} id={id}/>
                                                 )}
                                             </Tab.Pane>
                                     },
                                     {menuItem: 'Applications',
                                         render: () =>
                                             <Tab.Pane>
-                                                {this.props.account.applications.map((application) => (
-                                                    <ApplicationItem
-                                                        key={application.id}
-                                                        application={application}
-                                                    />
+                                                {this.props.account.applications.map((id) => (
+                                                    <ApplicationItem key={id} id={id}/>
                                                 ))}
                                             </Tab.Pane>
                                     },
@@ -118,12 +108,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addApplication: (account, application) => {
-            return dispatch(addApplication(account, application))
-        },
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeveloperProfile);
+export default connect(mapStateToProps, null)(DeveloperProfile);

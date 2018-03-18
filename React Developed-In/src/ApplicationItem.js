@@ -4,6 +4,9 @@ import { Grid } from 'semantic-ui-react'
 import { Item, Icon, Button, Image } from 'semantic-ui-react'
 import Chat from './Chat'
 import logo from './img/logo.svg'
+import {connect} from "react-redux";
+import {accountAddApplication, loadApplication} from "./redux/ajax";
+import {addApplication} from "./redux/actions";
 
 const skillColor = {"Java": "red", "PHP": "orange", "Ruby": "olive", "C#": "green", "Swift": "teal",
     "Python": "blue", "C++": "violet", "C": "purple", "HTML/CSS": "pink", "JavaScript": "brown"};
@@ -15,12 +18,24 @@ class ApplicationItem extends Component {
 
         this.state={
             chat: false,
+            application: null,
         };
 
+        this.id = this.props.id;
+        loadApplication(this.id).then((application)=> {
+            this.setState({application: application});
+        });
     }
 
+    onClickApply = () => {
+        this.props.addApplication(this.props.account, this.id);
+        accountAddApplication(this.props.account, this.id);
+    };
+
     render() {
-        return (
+        return this.state.application === null ? (
+            <div>Loading...</div>
+        ) : (
             <div className='applicationItem' style={{ marginTop: '2em', marginBottom: '2em'}}>
                 <Grid>
                     <Grid.Column width={3} verticalAlign='middle'>
@@ -31,15 +46,15 @@ class ApplicationItem extends Component {
                             <Item>
                                 <Item.Content>
                                     <Item.Header>
-                                        <Link to={"/application/" + this.props.application.id}>
-                                            {this.props.application.title}
+                                        <Link to={"/application/" + this.state.application.id}>
+                                            {this.state.application.title}
                                         </Link>
                                     </Item.Header>
                                     <Item.Description>
-                                        {this.props.application.description}
+                                        {this.state.application.description}
                                     </Item.Description>
                                     <Item.Extra>
-                                        {this.props.application.skills.map((skill) => (
+                                        {this.state.application.skills.map((skill) => (
                                             <Button
                                                 inverted size='mini'
                                                 key={skill.toString()}
@@ -47,15 +62,15 @@ class ApplicationItem extends Component {
                                             />
                                         ))}
                                     </Item.Extra>
-                                    {this.props.apply !== undefined ? (
+                                    {this.props.account === null || !this.props.account.applications.includes(this.id) ? (
                                         <Item.Meta id='itemStatus'>
                                             <Icon name='time' size='large'/>
-                                            Published on {this.props.application.date}
+                                            Published on {this.state.application.date}
                                         </Item.Meta>
                                     ) : (
                                         <Item.Meta id='itemStatus'>
                                             <Icon name='info circle' size='large'/>
-                                            {this.props.application.status}
+                                            {this.state.application.status}
                                         </Item.Meta>
                                     )}
                                 </Item.Content>
@@ -63,11 +78,11 @@ class ApplicationItem extends Component {
                         </Item.Group>
                     </Grid.Column>
                     <Grid.Column width={3} verticalAlign='middle'>
-                        {this.props.apply !== undefined ? (
+                        {this.props.account === null || !this.props.account.applications.includes(this.id) ? (
                             <Button
                                 style={{marginTop: '4px', marginBottom: '4px'}}
                                 fluid color='grey' content="Apply"
-                                onClick={()=> this.props.apply()}
+                                onClick={this.onClickApply}
                             />
                         ) : (
                             <Button
@@ -84,8 +99,23 @@ class ApplicationItem extends Component {
                     />
                 </Grid>
             </div>
+
         );
     }
 }
 
-export default ApplicationItem;
+const mapStateToProps = (state) => {
+    return {
+        account: state.account,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addApplication: (account, id) => {
+            return dispatch(addApplication(account, id))
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApplicationItem);

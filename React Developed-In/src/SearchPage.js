@@ -2,19 +2,27 @@ import React, {Component} from 'react';
 import {Container} from "semantic-ui-react";
 import {connect} from "react-redux";
 import ApplicationItem from "./ApplicationItem";
-import {addApplication} from "./redux/actions";
+import {loadSearchApplications} from "./redux/ajax";
 
 class SearchPage extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            applications: []
+        };
+
+        loadSearchApplications().then((applications) => {
+            this.setState({applications: applications});
+        })
+    }
+
     render() {
         return (
             <div className='applicationItem' style={{ marginTop: '2em', marginBottom: '2em'}}>
                 <Container style={{ marginTop: '5em' }}>
-                    {this.props.applications.map((application) =>
-                        <ApplicationItem
-                            key={application.id}
-                            apply={()=> {this.props.addApplication(this.props.account, application)}}
-                            application={application}
-                        />
+                    {this.state.applications.map((application) =>
+                        <ApplicationItem key={application.id} id={application.id}/>
                     )}
                 </Container>
             </div>
@@ -25,16 +33,7 @@ class SearchPage extends Component {
 const mapStateToProps = (state) => {
     return {
         account: state.account,
-        applications: state.applications,
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addApplication: (account, application) => {
-            return dispatch(addApplication(account, application))
-        },
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+export default connect(mapStateToProps, null)(SearchPage);

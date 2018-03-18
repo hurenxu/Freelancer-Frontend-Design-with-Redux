@@ -3,7 +3,7 @@ import {Grid, Header, Container, Button, Image, List} from 'semantic-ui-react'
 import {connect} from "react-redux";
 import Chat from './Chat'
 import {addApplication} from "./redux/actions";
-import {loadApplications} from "./redux/ajax";
+import {accountAddApplication, loadApplication} from "./redux/ajax";
 
 class ApplicationDetail extends Component {
     constructor(props) {
@@ -15,11 +15,16 @@ class ApplicationDetail extends Component {
             application: null,
         };
 
-        loadApplications(parseInt(this.props.location.pathname.slice(-1))).then((application)=> {
+        this.id = parseInt(this.props.location.pathname.slice(-1), 10);
+        loadApplication(this.id).then((application)=> {
             this.setState({application: application});
-            console.log(this.state);
         });
     }
+
+    onClickApply = () => {
+        this.props.addApplication(this.props.account, this.id);
+        accountAddApplication(this.props.account, this.id);
+    };
 
     render() {
         return this.state.application === null ? (
@@ -33,13 +38,13 @@ class ApplicationDetail extends Component {
                             <Header as='h1'>{this.state.application.title}</Header>
                         </Grid.Column>
                         <Grid.Column width={2}>
-                            {this.state.application.accounts.includes(this.props.account) ? (
-                                <Button fluid color='teal' content="Go Chat"/>
-                            ): (
+                            {this.props.account === null || !this.props.account.applications.includes(this.id) ? (
                                 <Button
                                     fluid color='grey' content="Apply"
-                                    onClick={()=> this.props.addApplication(this.props.account, this.state.application)}
+                                    onClick={()=> this.onClickApply}
                                 />
+                            ): (
+                                <Button fluid color='teal' content="Go Chat"/>
                             )}
                         </Grid.Column>
                     </Grid>
@@ -72,14 +77,13 @@ class ApplicationDetail extends Component {
 const mapStateToProps = (state) => {
     return {
         account: state.account,
-        applications: state.applications,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addApplication: (account, application) => {
-            return dispatch(addApplication(account, application))
+        addApplication: (account, id) => {
+            return dispatch(addApplication(account, id))
         },
     };
 };

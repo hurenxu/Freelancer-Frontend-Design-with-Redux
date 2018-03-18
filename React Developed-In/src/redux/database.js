@@ -3,7 +3,6 @@ import image from '../img/app_detail.png'
 export const applicationData = [
     {
         id: 0,
-        accounts: [],
         title: "Android implementation of the Messenger",
         description: "Description goes here...",
         skills: ["Java"],
@@ -15,7 +14,6 @@ export const applicationData = [
     },
     {
         id: 1,
-        accounts: [],
         title: "Android implementation of the Messenger",
         description: "Description goes here...",
         skills: ["Java"],
@@ -27,7 +25,6 @@ export const applicationData = [
     },
     {
         id: 2,
-        accounts: [],
         title: "Android implementation of the Messenger",
         description: "Description goes here...",
         skills: ["Java"],
@@ -44,6 +41,6 @@ export const accountData = [
         username: "Joeyonng",
         password: "123",
         applications: [],
-        suggestions: applicationData,
+        suggestions: [0, 1, 2],
     },
 ];

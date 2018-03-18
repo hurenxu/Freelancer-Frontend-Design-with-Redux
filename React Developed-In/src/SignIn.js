@@ -53,9 +53,6 @@ class SignIn extends Component {
 
             this.props.changeAccount(account);
             this.props.onClose();
-
-        }).catch(error => {
-            throw(error);
         });
     };
 

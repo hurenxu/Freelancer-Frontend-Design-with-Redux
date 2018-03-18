@@ -32,7 +32,35 @@ export const loadAccount = (username) => {
     });
 };
 
-export const loadApplications = (id) => {
+export const accountAddApplication = (account, id) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            let account = null;
+            for(let i = 0; i < accountData.length; i++) {
+                if(accountData[i] === account) {
+                    accountData[i].applications.push(id);
+                    let index = accountData[i].suggestions.indexOf(id);
+                    if (index !== -1) accountData[i].suggestions.splice(index, 1);
+                    account = accountData[i];
+
+                    break;
+                }
+            }
+
+            resolve(Object.assign({}, account));
+        }, delay);
+    });
+};
+
+export const loadSearchApplications = () => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(Object.assign([], applicationData));
+        }, delay);
+    });
+};
+
+export const loadApplication = (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             let application = null;
@@ -45,4 +73,4 @@ export const loadApplications = (id) => {
             resolve(application === null ? null : Object.assign({}, application));
         }, delay);
     });
-}
+};

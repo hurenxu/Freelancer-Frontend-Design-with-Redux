@@ -6,8 +6,8 @@ export const changeAccount = (account) => ({
     account,
 });
 
-export const addApplication = (account, application) => ({
+export const addApplication = (account, id) => ({
     type: ADD_APPLICATION,
     account,
-    application,
+    id,
 });
