@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "css-loader": "^0.28.11",
     "enzyme-adapter-react-16": "^1.1.1",
     "redux": "^3.7.2",
     "uuid": "^3.2.1"

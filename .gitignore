@@ -1,2 +1,3 @@
-.idea/*
-React Developed-In/node_modules/*
+.idea/
+React Developed-In/build/
+React Developed-In/node_modules/
